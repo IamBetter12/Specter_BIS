@@ -1,0 +1,8 @@
+streamlit #UI
+requests #requests webservices/apis
+yfinance #financial, historical, and real-time market data
+pandas #data analysis and manipulitation
+numpy #math functions
+plotly #graphs/charts
+feedparser #for RSS
+python-dotenv #loads environment variables from a .env file into your application's environment
