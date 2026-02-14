@@ -9,10 +9,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Use UPPERCASE to match your .env file
-ALPHA_VANTAGE_KEY = os.getenv("alpha_vantage")
-FMP_KEY = os.getenv("fmp")
-GNEWS_KEY = os.getenv("gnews")
-FRED_KEY = os.getenv("fred")
+ALPHA_VANTAGE_KEY = os.getenv("ALPHA_VANTAGE_KEY")
+FMP_KEY = os.getenv("FMP_KEY")
+GNEWS_KEY = os.getenv("GNEWS_KEY")
+FRED_KEY = os.getenv("FRED_KEY")
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
