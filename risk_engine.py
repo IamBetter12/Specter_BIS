@@ -37,7 +37,7 @@ def assess_news_risk(news: list):
     if not news:
         return {"score": 0, "reasons": []}
 
-    # Expanded keyword list to catch general market sentiment, not just crimes
+    # Expanded keyword list to catch general market sentiment
     negative_keywords = [
         "lawsuit", "investigation", "fraud", "recall",
         "layoffs", "probe", "antitrust", "bankruptcy",
@@ -52,10 +52,10 @@ def assess_news_risk(news: list):
         if any(word in title for word in negative_keywords):
             hits += 1
 
-    if hits >= 3:
+    if hits >= 2:
         score += 2
         reasons.append("Multiple negative news events detected")
-    elif hits > 0:
+    elif hits >= 1:
         score += 1
         reasons.append("Some negative news coverage detected")
 
@@ -69,7 +69,7 @@ def assess_market_risk(interest_rate):
     score = 0
     reasons = []
 
-    if interest_rate and interest_rate > 4.5:
+    if interest_rate and interest_rate > 4.0:
         score += 1
         reasons.append("High interest rate environment")
 
