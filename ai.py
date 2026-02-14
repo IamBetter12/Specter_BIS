@@ -5,8 +5,8 @@ from dotenv import load_dotenv #to acces the .env file with all the API's and th
 # Load up environment variables.
 load_dotenv()
 
-gemini = os.getenv("gemini")
-url = "https://generativelanguage.googleapis.com/v1beta"
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+BASE_URL = "https://generativelanguage.googleapis.com/v1beta"
 
 def generate_explanation(ticker, company, risk, components):
     #try to get the gemini response first, then move on to the manual explanation incase of any errors
@@ -21,8 +21,8 @@ def generate_explanation(ticker, company, risk, components):
 def find_working_model():
     #finds a usable gemini model
     try:
-        url = f"{url}/models?key={gemini}"
-        r = requests.get(url, timeout=15)
+        BASE_URL = f"{BASE_URL}/models?key={GEMINI_API_KEY}"
+        r = requests.get(BASE_URL, timeout=15)
         data = r.json()
 
         for model in data.get("models", []):
@@ -47,7 +47,7 @@ def run_gemini(prompt: str):
         return None
     # we are forming the link that gemini needs to get the answer, gemini needs it in a specific json format
     try:
-        url = f"{url}/models/{model}:generateContent?key={gemini}"
+        BASE_URL = f"{BASE_URL}/models/{model}:generateContent?key={GEMINI_API_KEY}"
         payload = {
             "contents": [
                 {
@@ -55,7 +55,7 @@ def run_gemini(prompt: str):
                 }
             ]
         }
-        r = requests.post(url, json=payload, timeout=20)
+        r = requests.post(BASE_URL, json=payload, timeout=20)
         data = r.json()
         #checks api rerros
         if "error" in data:
